@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="d1"></div>
+
+    <script>
+        var student = [
+            { id: 1, name: "Rucha", class: 5, address: "Pune" },
+            { id: 2, name: "Shital", class: 6, address: "Pune" },
+            { id: 3, name: "Akshata", class: 7, address: "Pune" },
+            { id: 4, name: "Vidhya", class: 8, address: "Pune" },
+            { id: 5, name: "Anjali", class: 9, address: "Pune" }
+        ];
+
+        var data = "<table border='1'> <tr> <td> ID </td> <td> Student Name </td> <td> Class </td> <td> Address </td> </tr>";
+
+        for (var i = 0; i < student.length; i++) {
+            data += "<tr><td>" + student[i].id +"</td><td>" + student[i].name + "</td><td>" + student[i].class +"</td><td>"
+                + student[i].address +"</td></tr>";
+        }
+        data += "</table>";
+
+        document.getElementById("d1").innerHTML = data;
+            
+    </script>
+</body>
+</html>
