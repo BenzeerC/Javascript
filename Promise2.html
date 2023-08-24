@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="button" value="Get Data" onclick="GetData()" />
+    <div id="d1"></div>
+    <script>
+        async function GetData() {
+            let promise = new Promise(function (resolve, reject) {
+                let req = new XMLHttpRequest();
+                req.open("GET", "https://dummyjson.com/products/2");
+                req.onload = function () {
+                    if (req.status == 200) { // status --> HTTP
+                        resolve(req.response);
+                    }
+                    else {
+                        reject("Server error");
+                    }
+                };
+                req.send();
+            }); // close
+
+
+            //call the promise
+            var response = await promise;
+            display(response);
+        }
+
+        //promise.then(function (value) {
+        //    display(value)
+        //},
+        //    function (error) {
+        //        displayerror(error)
+        //    }
+        //);
+
+
+        function display(value) {
+            var data = "<table border='1'><tr><td>Id</td><td>Title</td><td>Discription</td><td>Price</td><td>image</td></tr>";
+            var result = JSON.parse(value);
+            /*for (var i = 0; i < result.length; i++) {*/
+            data += "<tr><td>" + result.id + "</td><td>" + result.title + "</td><td>" +
+                result.description + "</td><td>" + result.price + "</td><td><img src='" + result.thumbnail +"' hight='200' width='300'/></td></tr>";
+            /*}*/
+            data += "</table>";
+            document.getElementById("d1").innerHTML = data;
+        }
+
+
+        function displayerror(error) {
+            document.getElementById("d1").innerHTML = error;
+        }
+    </script>
+</body>
+
+
+
+</html>
